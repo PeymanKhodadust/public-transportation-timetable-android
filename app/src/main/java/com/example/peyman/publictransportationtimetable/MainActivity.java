@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.peyman.publictransportationtimetable.utilities.NetworkUtilities;
+import com.example.peyman.publictransportationtimetable.utilities.RestApiQueryTask;
 
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_URL = "com.example.peyman.publictransportationtimetable.EXTRA_URL";
+    private static NetworkUtilities networkUtilities;
     //public static final String EXTRA_ARRIVALSTATION = "com.example.peyman.publictransportationtimetable.ARRIVALSTATION";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,8 @@ public class MainActivity extends AppCompatActivity {
         HashMap args = new HashMap<String, String>();
         args.put("from", depStation);
         args.put("to", arrStation);
-        NetworkUtilities n = new NetworkUtilities("connection", args);
-        intent.putExtra(EXTRA_URL, n.getQueryUrl().toString());
-        //intent.putExtra(EXTRA_ARRIVALSTATION, arrStation);
-        startActivity(intent);
+        RestApiQueryTask restApiQueryTask = new RestApiQueryTask(this, intent);
+        restApiQueryTask.execute(NetworkUtilities.createUrl("connections", args));
     }
 
 }
