@@ -12,8 +12,6 @@ import com.example.peyman.publictransportationtimetable.utilities.RestApiQueryTa
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    private static NetworkUtilities networkUtilities;
-    //public static final String EXTRA_ARRIVALSTATION = "com.example.peyman.publictransportationtimetable.ARRIVALSTATION";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         EditText to = (EditText) findViewById(R.id.editText3);
         String depStation = from.getText().toString();
         String arrStation = to.getText().toString();
-        HashMap args = new HashMap<String, String>();
+        HashMap args = new HashMap<>();
         args.put("from", depStation);
         args.put("to", arrStation);
         RestApiQueryTask restApiQueryTask = new RestApiQueryTask(this, intent);
