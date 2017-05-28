@@ -39,7 +39,6 @@ public class NetworkUtilities {
     }
 
     public static String getRequestFromHttpUrl(URL url) throws IOException{
-        Log.v("Networkutilities", "--------------- url = " + url.toString());
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
